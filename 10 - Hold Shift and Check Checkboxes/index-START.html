@@ -104,6 +104,30 @@
   </div>
 
 <script>
+const items = Array.from(document.querySelectorAll('.item'));
+let checkboxes = [];
+items.forEach(item => addIdListener(item));
+
+let lastCheckedIndex = 0;
+
+function addIdListener(item){
+  input = item.querySelector('input');
+  input.addEventListener('click', checkBoxed);
+  input.setAttribute("id", item.textContent.trim());
+  checkboxes.push(input)
+}
+
+function checkBoxed(e){
+  const checked = checkboxes.findIndex(cb => cb.id === this.id);
+  if (e.shiftKey && lastCheckedIndex != checked){
+    let min = Math.min(lastCheckedIndex, checked);
+    let max = Math.max(lastCheckedIndex, checked);
+    const operate = checkboxes.slice(min, max);
+    operate.push(checkboxes[lastCheckedIndex]);
+    operate.forEach(cb => cb.checked = this.checked);
+  }
+  lastCheckedIndex = checked;
+}
 </script>
 </body>
 </html>
