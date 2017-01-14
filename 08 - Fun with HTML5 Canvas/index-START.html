@@ -45,6 +45,13 @@
         hue ++;
         hue = hue % 360
     }
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        draw(); 
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, false);
 </script>
 
 <style>
