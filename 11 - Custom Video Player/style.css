@@ -26,6 +26,13 @@ body {
   overflow: hidden;
 }
 
+.player.fullscreen {
+  border:none;
+  box-shadow:none;
+  min-width: 100%;
+  min-height: 100%;
+}
+
 .player__video {
   width: 100%;
 }
