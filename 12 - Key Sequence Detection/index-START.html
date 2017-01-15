@@ -7,6 +7,17 @@
 </head>
 <body>
 <script>
+const keysPressed = [];
+const unlock = 'Laurence';
+
+function trackKeys(e){
+	if (e.key !== 'Shift')
+		keysPressed.push(e.key);
+	keysPressed.splice(-unlock.length -1, keysPressed.length - unlock.length);
+	if(keysPressed.join('') === unlock)
+		cornify_add();
+}
+window.addEventListener('keyup', trackKeys);
 </script>
 </body>
 </html>
