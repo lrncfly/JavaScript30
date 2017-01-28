@@ -8,15 +8,23 @@
 
   <script>
     // start with strings, numbers and booleans
-
+    let myname = "laurence";
+    let yourname = myname;
+    myname = "harry";
+    console.log(myname, yourname);
+    myname = "barry";
+    console.log(myname, yourname);
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
-
+    playercopy = players;
     // You might think we can just do something like this:
+    playercopy[2] = "harry";
 
     // however what happens when we update that array?
+    console.log(players);
+    console.log(playercopy);
 
     // now here is the problem!
 
@@ -25,9 +33,11 @@
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
-
+    playercopy = players.slice();
+    playercopy[2] = "barry";
     // one day
-
+    console.log(players);
+    console.log(playercopy);
     // or create a new array and concat the old one in
 
     // or use the new ES6 Spread
