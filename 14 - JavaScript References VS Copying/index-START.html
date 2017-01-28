@@ -18,7 +18,7 @@
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
-    playercopy = players;
+    const playercopy = players;
     // You might think we can just do something like this:
     playercopy[2] = "harry";
 
@@ -33,30 +33,56 @@
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
-    playercopy = players.slice();
-    playercopy[2] = "barry";
+    const playerslicecopy = players.slice();
+    playerslicecopy[2] = "barry";
     // one day
     console.log(players);
-    console.log(playercopy);
+    console.log(playerslicecopy);
+
     // or create a new array and concat the old one in
+    const playerconcatcopy = [].concat(players);
+    playerconcatcopy[2] = "mary";
+    console.log(players);
+    console.log(playerconcatcopy);
 
     // or use the new ES6 Spread
+    const playerspreadcopy = [].concat(players);
+    playerspreadcopy[2] = "fairy";
+    console.log(players);
+    console.log(playerspreadcopy);
 
     // now when we update it, the original one isn't changed
 
     // The same thing goes for objects, let's say we have a person object
+    const person = {
+        name: "harry",
+        age:52,
+        address: {number: 99, street:"elm"}
+    }
 
+    const harry = person;
+    console.log(person);
+    console.log(harry);
     // with Objects
 
     // and think we make a copy:
+    harry.age = 12;
+    console.log(person);
+    console.log(harry);
 
     // how do we take a copy instead?
-
+    barry = Object.assign({}, person, { name: "barry", age: 88});
+    mary = Object.assign({}, barry);
+    const mary2 = JSON.parse(JSON.stringify(person));
+    console.log(person);
+    console.log(barry);
+    console.log(mary);
+    console.log(mary2);
     // We will hopefully soon see the object ...spread
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
 
-  </script>
+   </script>
 
 </body>
 </html>
