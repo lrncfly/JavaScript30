@@ -31,6 +31,26 @@
   </style>
 
 <script>
+
+const hero = document.querySelector('.hero');
+const text = document.querySelector('h1');
+
+function captureMove(e){
+  const {offsetWidth: width, offsetHeight:height} = hero;
+  let {offsetX: x, offsetY: y} = e;
+  if (e.target !== this){
+    x = x + e.target.offsetLeft;
+    y = y + e.target.offsetTop;
+  }
+
+  const transpose = 100;
+  const xShadow = (x / width * transpose) - transpose / 2;
+  const yShadow = (y / height * transpose) - transpose / 2;
+
+  text.style.textShadow = `${xShadow}px ${yShadow}px 0 rgba(154,97,225,0.7)`;
+}
+
+hero.addEventListener('mousemove', captureMove);
 </script>
 </body>
 </html>
