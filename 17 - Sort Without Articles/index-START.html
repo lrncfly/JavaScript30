@@ -45,6 +45,31 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+const ignoreArticles = ['the', 'a', 'an'];
+const regexStr = ignoreArticles.map(art => `\\b${art}\\b`).join('|') 
+
+const bandsList = document.querySelector('#bands');
+
+function stripIgnoreList(something, ignorelist){
+  const regex = new RegExp(`^(${regexStr})`, 'i');
+  return something.replace(regex, '').trim();
+}
+
+function sortList(list, ignorelist){
+  return list.sort((a,b) => {
+    return stripIgnoreList(a, ignorelist) > stripIgnoreList(b, ignorelist) ? 1 : -1;
+  });
+}
+
+function populateList(){
+  list = bands.map((band,i) => {
+    return `
+      <li>${band}</li>
+    `;
+  }).join('');
+  bandsList.innerHTML = list;
+}
+populateList(sortList(bands, ignoreArticles));
 
 </script>
 
