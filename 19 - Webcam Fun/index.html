@@ -10,7 +10,20 @@
   <div class="photobooth">
     <div class="controls">
       <button onClick="takePhoto()">Take Photo</button>
-<!--       <div class="rgb">
+      <input type="checkbox" name="filter">filter</input>
+      <input type="checkbox" name="split">split</input>
+      <input type="checkbox" name="greenScreen">greenscreen</input>
+      <div class="filters">
+        <label for="rfil">Red Filter:</label>
+        <input type="range" min=-255 max=255 name="rfil">
+        <br>
+        <label for="gfil">Green Filter:</label>
+        <input type="range" min=-255 max=255 name="gfil">
+        <br>
+        <label for="bfil">Blue Filter:</label>
+        <input type="range" min=-255 max=255 name="bfil">
+      </div>
+      <div class="rgb">
         <label for="rmin">Red Min:</label>
         <input type="range" min=0 max=255 name="rmin">
         <label for="rmax">Red Max:</label>
@@ -29,7 +42,7 @@
         <input type="range" min=0 max=255 name="bmin">
         <label for="bmax">Blue Max:</label>
         <input type="range" min=0 max=255 name="bmax">
-      </div> -->
+      </div>
     </div>
 
     <canvas class="photo"></canvas>
