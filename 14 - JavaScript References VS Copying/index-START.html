@@ -33,11 +33,16 @@
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
+<<<<<<< HEAD
     const playerslicecopy = players.slice();
     playerslicecopy[2] = "barry";
     // one day
     console.log(players);
     console.log(playerslicecopy);
+=======
+
+    // one way
+>>>>>>> wesbos/master
 
     // or create a new array and concat the old one in
     const playerconcatcopy = [].concat(players);
