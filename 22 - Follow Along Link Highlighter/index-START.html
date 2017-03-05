@@ -26,7 +26,26 @@
     </div>
 
   <script>
-    // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+    const doclinks = document.querySelectorAll('a');
+    doclinks.forEach(a => a.addEventListener('mouseenter', drawspan));
+
+    function drawspan(){
+      const boundingRect = this.getBoundingClientRect();
+      const newcoords = {
+        width : boundingRect.width,
+        height : boundingRect.height,
+        left : boundingRect.left + window.scrollX,
+        top : boundingRect.top + window.scrollY,
+      };
+
+      stylespan.style.width = `${newcoords.width}px`;
+      stylespan.style.height = `${newcoords.height}px`;
+      stylespan.style.transform = `translate(${newcoords.left}px, ${newcoords.top}px)`;
+    }
+
+    stylespan = document.createElement('span');
+    stylespan.classList.add('highlight');
+    document.body.append(stylespan);
   </script>
 </body>
 </html>
