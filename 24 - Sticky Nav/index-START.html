@@ -54,7 +54,20 @@
   </div>
 
 <script>
+  const navbar = document.querySelector('#main');
+  let navbarOffsetTop = navbar.offsetTop;
 
+  function stickNav(){
+    if(window.scrollY > navbarOffsetTop) {
+      document.body.classList.add('navbar-fixed');
+      document.body.style.paddingTop = navbar.offsetHeight + 'px';
+    }
+    else {
+      document.body.classList.remove('navbar-fixed');
+      document.body.style.paddingTop = 0;
+    }
+  }
+  window.addEventListener('scroll', stickNav);
 </script>
 
 </body>
