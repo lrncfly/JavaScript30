@@ -132,14 +132,13 @@
     display: none;
   }
 
-  .trigger-enter .dropdown {
+  .li-enter-event .dropdown {
     display: block;
   }
 
-  .trigger-enter-active .dropdown {
-    opacity: 1;
+  .li-enter-active .dropdown {
+    opacity: 1
   }
-
 
 
   .dropdownBackground {
@@ -156,7 +155,7 @@
     opacity:0;
   }
 
-  .dropdownBackground.open {
+  .dropdownBackground.show {
     opacity: 1;
   }
 
@@ -214,7 +213,30 @@
 </style>
 
 <script>
-</script>
+  const lis = document.querySelectorAll('.cool > li');
+  lis.forEach(item => item.addEventListener('mouseenter', handleEnter));
+  lis.forEach(item => item.addEventListener('mouseleave', handleLeave));
 
+  const ddbg = document.querySelector('.dropdownBackground');
+
+  function handleEnter(){
+    this.classList.add('li-enter-event');
+    setTimeout(() => this.classList.contains('li-enter-event') && this.classList.add('li-enter-active'), 100);
+    ddbg.classList.add('show');
+    menu_area = this.querySelector('.dropdown').getBoundingClientRect();
+    nav_area = document.querySelector('.top').getBoundingClientRect();
+
+    ddbg.style.setProperty('width',`${menu_area.width}px`);
+    ddbg.style.setProperty('height',`${menu_area.height}px`);
+    ddbg.style.setProperty('top',`${menu_area.top - nav_area.top}px`);
+    ddbg.style.setProperty('left',`${menu_area.left - nav_area.left}px`);
+
+  }
+
+  function handleLeave(){
+    this.classList.remove('li-enter-event', 'li-enter-active');
+    ddbg.classList.remove('show');
+  }
+</script>
 </body>
 </html>
