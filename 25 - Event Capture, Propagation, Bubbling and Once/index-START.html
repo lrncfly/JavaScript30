@@ -39,7 +39,34 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
 
+  function logtext(e){
+    console.log("logtext: " + this.classList.value);
+  }
+
+  function logtextStopPropagation(e){
+    e.stopPropagation();
+    console.log("logtextStopPropagation: " + this.classList.value);
+  }
+  function logtextCaptureTrue(e){
+    console.log("logtextCaptureTrue: " + this.classList.value);
+  }
+  function logtextOnce(e){
+    console.log("logtextOnce: " + this.classList.value);
+  }
+
+  divs.forEach(div => div.addEventListener('click', logtext));
+  divs.forEach(div => div.addEventListener('click', logtextStopPropagation));
+  divs.forEach(div => div.addEventListener('click', logtextCaptureTrue, {
+    capture: true
+  }));
+  divs.forEach(div => div.addEventListener('click', logtextOnce, {
+    once: true
+  }));
+
+  const button = document.querySelector('button');
+  button.addEventListener('click', ()=> console.log('button clicked'), {once: true})
 </script>
 </body>
 </html>
